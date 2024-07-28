@@ -5,4 +5,5 @@ export interface User {
     lastName: string;
     address:{city:string};
     birthDate: string;
+    isHighlighted?: boolean;
 }

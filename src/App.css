@@ -54,18 +54,23 @@ body {
 
 table {
     width: 100%;
-    border-collapse: collapse;
+    border: 1px solid black;
+  border-radius: 10px;
 }
 
-th, td {
+th {
     padding: 10px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
+tr{
+    text-align: left;
+}
 
 
 tr.highlight {
-    background-color: #add8e6;
+    background-color: #45bae1;
+   
 }
 
 .logo {

@@ -17,9 +17,9 @@ const UserTable: React.FC<UserTableProps> = ({ users }) => {
                 </tr>
             </thead>
             <tbody>
-                {users.map((user) => (
-                    <tr key={user.id}>
-                        <td>{`${user.firstName} ${user.lastName}`}</td>
+            {users.map((user) => (
+                    <tr key={user.id} className={user.isHighlighted ? 'highlight' : ''}>
+                        <td>{user.firstName} {user.lastName}</td>
                         <td>{user.address.city}</td>
                         <td>{user.birthDate}</td>
                     </tr>

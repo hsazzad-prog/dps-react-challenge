@@ -8,7 +8,7 @@ import { debounce } from "lodash";
 import { User } from './interface/UserInterface';
 
 function App() {
-	const [users, setUsers] = useState<User[]>([]);
+    const [users, setUsers] = useState<User[]>([]);
     const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
     const [cities, setCities] = useState<string[]>([]);
     const [highlight, setHighlight] = useState<boolean>(false);
@@ -42,20 +42,24 @@ function App() {
     };
 
     useEffect(() => {
+        let updatedUsers = [...users];
         if (highlight) {
-            const oldestUsers = users.reduce((acc: User[], user: User) => {
+            const oldestUsers = updatedUsers.reduce((acc: User[], user: User) => {
                 const existing = acc.find(u => u.address.city === user.address.city);
                 if (!existing || new Date(existing.birthDate) > new Date(user.birthDate)) {
-                    return [...acc.filter(u => u.address.city !== user.address.city), user];
+                    return [...acc.filter(u => u.address.city !== user.address.city), {...user, isHighlighted: true}];
                 }
                 return acc;
             }, []);
-            setFilteredUsers(oldestUsers);
+            updatedUsers = updatedUsers.map(user => ({
+                ...user,
+                isHighlighted: oldestUsers.some(oldestUser => oldestUser.id === user.id)
+            }));
         } else {
-            setFilteredUsers(users);
+            updatedUsers = updatedUsers.map(user => ({ ...user, isHighlighted: false }));
         }
+        setFilteredUsers(updatedUsers);
     }, [highlight, users]);
-
   
 	return (
 		<>
