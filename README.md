@@ -1,4 +1,4 @@
-# DPS Frontend Coding Challenge
+# ReactJS Search with Different Filter Options
 
 ## Overview
 
